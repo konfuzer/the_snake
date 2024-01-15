@@ -168,7 +168,6 @@ def handle_keys(snake):
 
 
 def main():
-    # Тут нужно создать экземпляры классов.
     """
     Основная функция игры. Создает экземпляры классов Snake и Apple и запускает игровой цикл.
     """
@@ -188,7 +187,6 @@ def main():
         snake.draw(screen)
         apple.draw(screen)
         pygame.display.update()
-
 
 
 if __name__ == '__main__':
