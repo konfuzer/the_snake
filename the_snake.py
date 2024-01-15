@@ -43,6 +43,7 @@ clock = pygame.time.Clock()
 
 class GameObject:
     """Базовый класс для игровых объектов."""
+    
     def __init__(self, position=(0, 0), body_color=(0, 0, 0)):
         """Инициализация игрового объекта с заданными позицией и цветом."""
         self.position = position
@@ -58,6 +59,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для яблока, наследуется от GameObject."""
+
     def __init__(self, position=(0, 0), body_color=APPLE_COLOR):
         """Инициализация яблока с заданными позицией и цветом."""
         super().__init__(position, body_color)
@@ -77,6 +79,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Класс для змейки, наследуется от GameObject."""
+
     def __init__(self, position=(0, 0), body_color=SNAKE_COLOR):
         """Инициализация змейки с заданными позицией и цветом."""
         super().__init__(position, body_color)
