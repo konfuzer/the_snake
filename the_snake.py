@@ -40,11 +40,14 @@ pygame.display.set_caption('Змейка')
 # Настройка времени:
 clock = pygame.time.Clock()
 
+# Изначальная позиция:
+INITIONAL_POSITION = (0, 0)
+
 
 class GameObject:
     """Базовый класс для игровых объектов."""
 
-    def __init__(self, position=(0, 0), body_color=(0, 0, 0)):
+    def __init__(self, position=INITIONAL_POSITION, body_color=(0, 0, 0)):
         """Инициализация игрового объекта с заданными позицией и цветом."""
         self.position = position
         self.body_color = body_color
@@ -60,7 +63,7 @@ class GameObject:
 class Apple(GameObject):
     """Класс для яблока, наследуется от GameObject."""
 
-    def __init__(self, position=(0, 0), body_color=APPLE_COLOR):
+    def __init__(self, position=INITIONAL_POSITION, body_color=APPLE_COLOR):
         """Инициализация яблока с заданными позицией и цветом."""
         super().__init__(position, body_color)
 
@@ -80,7 +83,7 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс для змейки, наследуется от GameObject."""
 
-    def __init__(self, position=(0, 0), body_color=SNAKE_COLOR):
+    def __init__(self, position=INITIONAL_POSITION, body_color=SNAKE_COLOR):
         """Инициализация змейки с заданными позицией и цветом."""
         super().__init__(position, body_color)
         self.positions = [self.position]
@@ -145,7 +148,7 @@ def handle_keys(snake):
         if event.type == pygame.QUIT:
             pygame.quit()
             raise SystemExit
-        elif event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and snake.direction != DOWN:
                 snake.next_direction = UP
             elif event.key == pygame.K_DOWN and snake.direction != UP:
@@ -161,8 +164,8 @@ def main():
     Основная функция игры. Создает экземпляры классов Snake и Apple
     и запускает игровой цикл.
     """
-    snake = Snake((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), SNAKE_COLOR)
-    apple = Apple(body_color=APPLE_COLOR)
+    snake = Snake((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+    apple = Apple()
     apple.randomize_position()
 
     while True:
